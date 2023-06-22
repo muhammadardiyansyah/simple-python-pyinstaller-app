@@ -1,12 +1,9 @@
 node {
-    withDockerContainer(image: 'python:2-alpine') {
+    withDockerContainer(image: 'python:2-alpine', toolName : skipStagesAfterUnstable()) {
         stage('Build') {
             sh 'python -m py_compile sources/add2vals.py sources/calc.py'
             stash(name: 'compiled-results', includes: 'sources/*.py*')
         }
-    }
-    options {
-        skipStagesAfterUnstable()
     }
 
 //     }
