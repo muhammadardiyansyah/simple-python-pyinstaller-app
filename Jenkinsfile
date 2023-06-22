@@ -5,8 +5,7 @@ node{
             stash(name: 'compiled-results', includes: 'sources/*.py*')
         }
         stage('Test') {
-            withDockerContainer(image: 'qnib/pytest') {
-            }
+            image: 'qnib/pytest'
             sh 'py.test --junit-xml test-reports/results.xml sources/test_calc.py'
         }
     }
