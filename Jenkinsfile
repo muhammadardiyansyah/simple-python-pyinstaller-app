@@ -16,7 +16,7 @@ node {
         "IMAGE=cdrx/pyinstaller-linux:python2"
     ]) {
         stage('Deliver') {
-            sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
+            sh 'pyinstaller --onefile sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
         }
     }
