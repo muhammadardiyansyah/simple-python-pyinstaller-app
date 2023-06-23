@@ -13,10 +13,8 @@ node {
     }
     withDockerContainer(image: 'cdrx/pyinstaller-linux:python2') {
         stage('Deliver') {
-            unstash(name: 'compiled-results') 
             sh 'pyinstaller --onefile sources/add2vals.py'
-            archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
-            sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+            archiveArtifacts 'dist/add2vals'
         }
     }
 }
