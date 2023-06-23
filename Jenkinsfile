@@ -11,19 +11,21 @@ node {
             junit 'test-reports/results.xml'
         }
     }
-    stage('Deliver') {
-        environment { 
-            VOLUME = '$(pwd)/sources:/src'
-            IMAGE = 'cdrx/pyinstaller-linux:python2'
-        }
-        dir(path: env.BUILD_ID) { 
-                unstash(name: 'compiled-results') 
-                sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
+    withDockerContainer(){
+        stage('Deliver') {
+            environment { 
+                VOLUME = '$(pwd)/sources:/src'
+                IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
-        post {
-            success {
-                archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
-                sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+            dir(path: env.BUILD_ID) { 
+                    unstash(name: 'compiled-results') 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
+                }
+            post {
+                success {
+                    archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                }
             }
         }
     }
