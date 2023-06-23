@@ -11,7 +11,7 @@ node {
             junit 'test-reports/results.xml'
         }
     }
-    withDockerContainer(){
+    withDockerContainer(image: 'cdrx/pyinstaller-linux:python2'){
         stage('Deliver') {
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
