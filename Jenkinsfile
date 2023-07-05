@@ -11,6 +11,11 @@ node {
             junit 'test-reports/results.xml'
         }
     }
+    withDockerContainer(){
+        stage('Manual Approval') {
+            input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+        }
+    }
     withEnv([
         'VOLUME=$(pwd)/sources:/src',
         "IMAGE=cdrx/pyinstaller-linux:python2"
