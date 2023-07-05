@@ -11,7 +11,7 @@ node {
             junit 'test-reports/results.xml'
         }
         stage('Manual Approval') {
-            input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+            input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk mengakhiri)'
         }
     }
     withEnv([
