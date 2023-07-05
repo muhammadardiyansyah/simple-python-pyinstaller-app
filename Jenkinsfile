@@ -17,7 +17,7 @@ node {
     ]) {
         stage('Deploy') {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-            sleep 60
+            sh "sleep(60)"
             archiveArtifacts 'sources/dist/add2vals'
         }
     }
