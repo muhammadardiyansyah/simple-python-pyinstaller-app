@@ -51,7 +51,7 @@ node {
     }
     
     stage('Manual Approval') {
-        input message: 'Lanjutkan ke tahap Deploy?'
+        input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
     }
     
     stage('Deploy') {
@@ -65,7 +65,7 @@ node {
         sshPublisher(
             publishers: [
                 sshPublisherDesc(
-                    configName: 'submission-cicd-pipeline-nafifurqon-ec2', 
+                    configName: 'publish-python-app', 
                     transfers: [
                         sshTransfer(
                             cleanRemote: false,
