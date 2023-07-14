@@ -22,7 +22,7 @@ node {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
             archiveArtifacts 'sources/dist/add2vals'
             // sh "chmod 400 sources/dist/key-python-app.pem"
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-13-215-228-199.ap-southeast-1.compute.amazonaws.com"
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-13-229-235-236.ap-southeast-1.compute.amazonaws.com"
             // sh "ssh -o StrictHostKeyChecking=no ec2-13-229-235-236.ap-southeast-1.compute.amazonaws.com"
             sh "sleep 60"
         }
