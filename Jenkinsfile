@@ -21,7 +21,7 @@ node {
         stage('Deploy') {
             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
             archiveArtifacts 'sources/dist/add2vals'
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@172-31-38-106"
+            sh "ssh -o StrictHostKeyChecking=no ec2-13-229-235-236.ap-southeast-1.compute.amazonaws.com"
             sh "sleep 60"
         }
     }
